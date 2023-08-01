@@ -1,0 +1,51 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<h1>기본 테이블</h1>
+
+<table border="1">
+  <tr>
+    <th>username</th>
+    <th>age</th>
+  </tr>
+
+  <tr th:each="user : ${users}">
+    <td th:text="${user.username}">username</td>
+    <td th:text="${user.age}">0</td>
+  </tr>
+</table>
+
+<h1>반복 상태 유지</h1>
+
+<table border="1">
+  <tr>
+    <th>count</th>
+    <th>username</th>
+    <th>age</th>
+    <th>etc</th>
+  </tr>
+
+  <tr th:each="user, userStat : ${users}">   <!-- 두번쨰 파라미터는 생략가능인데, 생략하면 지정한 변수명( 'user' ) + 'stat' 가 된다
+                                                   여기서는 userStat 이기때문에 생략 가능합니다 -->
+    <td th:text="${userStat.count}">username</td>
+    <td th:text="${user.username}">username</td>
+    <td th:text="${user.age}">0</td>
+    <td>
+      index (0 부터 숫자 셈) = <span th:text="${userStat.index}"></span><br>
+      count (1 부터 숫자셈) = <span th:text="${userStat.count}"></span><br>
+      size (총 갯수) = <span th:text="${userStat.size}"></span><br>
+      even? (짝수?) = <span th:text="${userStat.even}"></span><br>
+      odd? (홀수?) = <span th:text="${userStat.odd}"></span><br>
+      first? (첫번째인가?) = <span th:text="${userStat.first}"></span><br>
+      last? (마지막인가?) = <span th:text="${userStat.last}"></span><br>
+      current (현재 객체) =<br>
+      <span th:text="${userStat.current}"></span><br>
+    </td>
+  </tr>
+</table>
+</body>
+</html>
